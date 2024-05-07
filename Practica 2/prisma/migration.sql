@@ -22,11 +22,9 @@ CREATE TABLE "Bitacora" (
     CONSTRAINT "Bitacora_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
+
 CREATE UNIQUE INDEX "PC_descripcion_key" ON "PC"("idpc");
 
--- AddForeignKey
 ALTER TABLE "Software" ADD CONSTRAINT "Software_pcId_fkey" FOREIGN KEY ("ciudadanoaId") REFERENCES "Ciudadanoa"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- AddForeignKey
 ALTER TABLE "Software" ADD CONSTRAINT "Software_softwareId_fkey" FOREIGN KEY ("preguntaaId") REFERENCES "Preguntaa"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
