@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PC {
+  id      Int      @id @default(autoincrement())
+  descripcio   String   @unique
+  serie   String? 
+  
+}
+
+model Software {
+  id     Int     @id @default(autoincrement())
+  idpc   String?
+  bitacora   Bitacora[]
+}
+
+model Bitacora {
+  id       Int      @id @default(autoincrement())
+  pcId   PC     @relation(fields: [idpc], references: [id])
+  SoftwareId  Int
+  fecha    Bitacora     @relation(fields: [SoftwareId], references: [id])
+
+  bitacora Boolean  @default(true)
+  }
+
+  
+  // Colección: PC
+{
+    "_id": ObjectId,
+    "nombre": String,
+    "descripcion": String,
+    "estado": { "type": String, "enum": ["Activo", "Pendiente", "Eliminado"], "default": "Activo" },
+    "hardware": { "type": ObjectId, "ref": "Hardware" },
+    "software": { "type": ObjectId, "ref": "Software" }
+  }
+  
+  // Colección: SOFTWARE
+  {
+    "_id": ObjectId,
+    "nombre": String,
+    "version": String,
+    "estado": { "type": String, "enum": ["Activo", "Pendiente", "Eliminado"], "default": "Activo" }
+  }
+  
+  // Colección: HARDWARE
+  {
+    "_id": ObjectId,
+    "nombre": String,
+    "descripcion": String,
+    "estado": { "type": String, "enum": ["Activo", "Pendiente", "Eliminado"], "default": "Activo" }
+  }
