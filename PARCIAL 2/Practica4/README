@@ -1,0 +1,18 @@
+
+## Evidencia de práctica
+
+Iniciamos la práctica con el siguiente comando
+
+```
+npm start 
+```
+
+# Evidencia de la ruta al crear una canal usando uuidv4
+
+<img src="img/1.png"  width="700em" height="500em" />
+
+### Evidencia de consulta de una api externa de ejemplo
+<img src="img/2.png"  width="700em" height="500em" />
+
+### Evidencia del resultado al consultar la api externa con axios
+<img src="img/3.png"  width="700em" height="500em" />

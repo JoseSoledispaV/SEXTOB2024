@@ -1,0 +1,37 @@
+
+## Evidencia de práctica
+
+Iniciamos la práctica con el siguiente comando
+
+```
+npm start 
+```
+
+# Evidencia de las rutas probadas con ThunderClient y Mongoose
+
+
+## Arquitectura usando entities,repositories
+
+### Insercción de datos de los canales canales, programas y guia
+
+<img src="img/1.png"  width="700em" height="500em" />
+
+
+<img src="img/2.png"  width="700em" height="500em" />
+
+<img src="img/3.png"  width="700em" height="500em" />
+
+### Consulta  de datos de los canales canales, programas y guia
+
+<img src="img/4.png"  width="700em" height="500em" />
+
+### Muestra de datos en la base de datos Mongoose
+
+
+<img src="img/5.png"  width="700em" height="500em" />
+
+
+<img src="img/6.png"  width="700em" height="500em" />
+
+<img src="img/7.png"  width="700em" height="500em" />
+
