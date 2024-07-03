@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enlace al CSS de Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Cliente WebSocket con Bootstrap</title>
+  <style>
+    
+    body {
+      padding: 20px;
+    }
+    .user-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .user-status {
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+  <script>
+    // Conexión con el servidor WebSocket
+    const socket = io('http://localhost:3000', {
+      query: {
+        userId: 'usuario1', 
+      }
+    });
+
+    // Función para actualizar la lista de usuarios conectados
+    const updateUserList = (userList) => {
+      const userListElement = document.getElementById('user-list');
+      userListElement.innerHTML = userList.map(user => `
+        <li class="list-group-item user-list-item">
+          <span>${user.nombre}</span>
+          <span class="user-status">${user.estado}</span>
+        </li>
+      `).join('');
+    };
+
+    socket.on('connect', () => {
+      console.log('Conectado al servidor WebSocket');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Desconectado del servidor WebSocket');
+    });
+
+    // Escucha el evento 'usuarios-conectados' para actualizar la lista de usuarios
+    socket.on('usuarios-conectados', (userList) => {
+      updateUserList(userList);
+    });
+
+    // Función de ejemplo para agregar una transacción
+    const agregarTransaccion = () => {
+      console.log('Agregar transacción');
+    };
+
+    // Función de ejemplo para consultar transacciones activas
+    const consultarActivos = () => {
+      console.log('Consultar transacciones activas');
+    };
+
+    // Función de ejemplo para eliminar una transacción
+    const eliminarTransaccion = (idTransaccion) => {
+      console.log(`Eliminar transacción ID ${idTransaccion}`);
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4 mb-4">Cliente WebSocket con Bootstrap</h1>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <button onclick="agregarTransaccion()" class="btn btn-primary mb-3">Agregar Transacción</button>
+        <button onclick="consultarActivos()" class="btn btn-info mb-3">Consultar Transacciones Activas</button>
+        <button onclick="eliminarTransaccion(1)" class="btn btn-danger mb-3">Eliminar Transacción ID 1</button>
+      </div>
+      <div class="col-md-6">
+        <h4>Usuarios Conectados</h4>
+        <ul id="user-list" class="list-group">
+          <!-- Lista de usuarios conectados se actualizará dinámicamente -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
